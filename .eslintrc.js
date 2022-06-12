@@ -12,5 +12,10 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    'react/prop-types': 'off',
+    'react/function-component-definition': [
+      (2, { namedComponents: 'arrow-function' }),
+    ],
+  },
 };
