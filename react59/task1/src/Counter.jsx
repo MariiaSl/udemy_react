@@ -5,15 +5,21 @@ const Counter = () => {
   return (
     <div className="counter">
       <button
+        type="button"
         className="counter__button"
         onClick={() => setCounter(counter - 1)}
       >
         -
       </button>
-      <span className="counter__value" onClick={() => setCounter(0)}>
-        {counter}
-      </span>
       <button
+        type="button"
+        className="counter__value"
+        onClick={() => setCounter(0)}
+      >
+        {counter}
+      </button>
+      <button
+        type="button"
         className="counter__button"
         onClick={() => setCounter(counter + 1)}
       >
