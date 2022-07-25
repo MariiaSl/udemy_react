@@ -18,5 +18,7 @@ module.exports = {
     //   (2, { namedComponents: 'arrow-function' }),
     // ],
     'react/function-component-definition': 0,
+    'arrow-body-style': 'off',
+    'object-curly-newline': 'off',
   },
 };
