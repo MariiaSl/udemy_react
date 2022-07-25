@@ -57,7 +57,7 @@ const User = () => {
 
   return (
     <div className="user">
-      <img className="user__avatar" alt="User_Avatar" src={avatar_url}></img>
+      <img className="user__avatar" alt="User_Avatar" src={avatar_url} />
       <div className="user__info">
         <span className="user__name">{name}</span>
         <span className="user__location">{location}</span>
