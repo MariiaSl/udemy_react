@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const Task = ({ task, toggleTask }) => {
+const Task = ({ task, toggleTask, deleteTask }) => {
   const { done, text } = task;
   // v1
   //   const listItemClasses = `list-item ${done ? 'list-item_done' : ''}`;
@@ -29,7 +29,7 @@ const Task = ({ task, toggleTask }) => {
         onClick={() => toggleTask(task)}
       />
       <span className="list-item__text">{text}</span>
-      <button className="list-item__delete-btn" type="button">
+      <button className="list-item__delete-btn" type="button" onClick={() => deleteTask(task)}>
         +
       </button>
     </li>

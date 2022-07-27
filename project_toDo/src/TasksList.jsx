@@ -44,15 +44,25 @@ const TasksList = () => {
     setTasks(updatedTasks);
   };
 
-  // 1. найти таску по айди
-  // 2.поменять в стейт если дан = фолс поменять на тру
+  const deleteTask = (clickedDelete) => {
+    const filteredTasks = tasks.filter(
+      // (taskToDelete) => taskToDelete.id !== clickedDelete.id,
+      (taskToDelete) => {
+        if (taskToDelete.id === clickedDelete.id) {
+          return false;
+        }
+        return true;
+      },
+    );
+    setTasks(filteredTasks);
+  };
 
   return (
     <div className="todo-list">
       <CreateTaskInput addTask={addTask} />
       <ul className="list">
         {tasks.map((task) => (
-          <Task task={task} key={task.id} toggleTask={toggleTask} />
+          <Task task={task} key={task.id} toggleTask={toggleTask} deleteTask={deleteTask} />
         ))}
       </ul>
     </div>
