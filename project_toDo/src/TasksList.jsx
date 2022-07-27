@@ -5,33 +5,30 @@ import axios from 'axios';
 
 const baseUrl = 'https://62dd5322ccdf9f7ec2c4e5f9.mockapi.io/api/v1/tasks';
 
-const items = [
-  { text: 'Buy milk', done: false, id: 1 },
-  { text: 'Pick up from the airport', done: false, id: 2 },
-  { text: 'Visit party', done: false, id: 3 },
-  { text: 'Visit doctor', done: true, id: 4 },
-  { text: 'Buy meat', done: true, id: 5 },
-];
+// const items = [
+//   { text: 'Buy milk', done: false, id: 1 },
+//   { text: 'Pick up from the airport', done: false, id: 2 },
+//   { text: 'Visit party', done: false, id: 3 },
+//   { text: 'Visit doctor', done: true, id: 4 },
+//   { text: 'Buy meat', done: true, id: 5 },
+// ];
 
 const TasksList = () => {
   const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    console.log('use effect executed');
+  const getData = () => {
     axios
       .get(baseUrl)
       .then((response) => {
-        // console.log(response)
         setTasks(response.data);
       })
       .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    console.log('use effect executed');
+    getData();
   }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .delete()
-
-  // }, []);
 
   const addTask = (text) => {
     const newTask = {
@@ -65,16 +62,22 @@ const TasksList = () => {
   };
 
   const deleteTask = (clickedDelete) => {
-    const filteredTasks = tasks.filter(
-      // (taskToDelete) => taskToDelete.id !== clickedDelete.id,
-      (taskToDelete) => {
-        if (taskToDelete.id === clickedDelete.id) {
-          return false;
-        }
-        return true;
-      },
-    );
-    setTasks(filteredTasks);
+    // const filteredTasks = tasks.filter(
+    //   // (taskToDelete) => taskToDelete.id !== clickedDelete.id,
+    //   (taskToDelete) => {
+    //     if (taskToDelete.id === clickedDelete.id) {
+    //       return false;
+    //     }
+    //     return true;
+    //   },
+    // );
+    // setTasks(filteredTasks);
+    axios
+      .delete(`${baseUrl}/${clickedDelete.id}`)
+      .then(() => {
+        getData();
+      })
+      .catch((error) => console.log(error));
   };
   console.log('task list rendered');
 
