@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Task from './Task';
 import CreateTaskInput from './CreateTaskInput';
+import axios from 'axios';
+
+const baseUrl = 'https://62dd5322ccdf9f7ec2c4e5f9.mockapi.io/api/v1/tasks';
 
 const items = [
   { text: 'Buy milk', done: false, id: 1 },
@@ -11,7 +14,24 @@ const items = [
 ];
 
 const TasksList = () => {
-  const [tasks, setTasks] = useState(items);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    console.log('use effect executed');
+    axios
+      .get(baseUrl)
+      .then((response) => {
+        // console.log(response)
+        setTasks(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .delete()
+
+  // }, []);
 
   const addTask = (text) => {
     const newTask = {
@@ -56,6 +76,7 @@ const TasksList = () => {
     );
     setTasks(filteredTasks);
   };
+  console.log('task list rendered');
 
   return (
     <div className="todo-list">
