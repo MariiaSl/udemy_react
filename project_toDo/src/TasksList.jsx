@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Task from './Task';
 import CreateTaskInput from './CreateTaskInput';
+// import CancelMessage from './CancelMessage';
 
 const baseUrl = 'https://62dd5322ccdf9f7ec2c4e5f9.mockapi.io/api/v1/tasks';
 
@@ -102,13 +103,6 @@ const TasksList = () => {
       .catch((error) => console.log(error));
   };
 
-  // 1. при нажатии на делит запуск таймера 3с, после - удаление айтема
-  // найти по айди айтем для удаления, удалить на сервере,
-  // перерендерить с сервера обновленный список
-  // 2. при нажатии на делит рендер списка, но вместо пункта с нажатым id
-  // - таймер отсчета и кнопка отменить
-  // 3. при нажатии на кнопку отменить перерендерить тот же список, что и был.
-
   const deleteTask = (clickedDelete) => {
     // const filteredTasks = tasks.filter(
     //   // (taskToDelete) => taskToDelete.id !== clickedDelete.id,
@@ -128,6 +122,21 @@ const TasksList = () => {
       .catch((error) => console.log(error));
   };
   console.log('task list rendered');
+
+  // const showCancel = (clickedItem) => {
+  //   deleteTask();
+
+  //   const itemToSwitch = tasks.find((task) => task.id === clickedItem.id);
+  //   const switchedItem = () => {
+  //     if (itemToSwitch) {
+  //       return <CancelMessage />;
+  //       // return console.log('Hi!');
+  //     }
+  //     return <CancelMessage />;
+  //     // return console.log('Hiiiiiiii!');
+  //   };
+  //   setTasks(switchedItem);
+  // };
 
   return (
     <div className="todo-list">
